@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary</title>
+</head>
+<body>
+<span th:if="${salary==null}">Salary not found</span>
+<span th:unless="${salary==null}">
+<table>
+  <thead>
+  <tr>
+    <th>Employee Number</th>
+    <th>Salary</th>
+    <th>From Date</th>
+    <th>To Date</th>
+  </thead>
+      <tr>
+        <td th:text="${salary.id.empNo}"></td>
+        <td th:text="${salary.salary}"></td>
+        <td th:text="${salary.id.fromDate}"></td>
+        <td th:text="${salary.toDate}"></td>
+      </tr>
+</table>
+</span>
+</body>
+</html>
