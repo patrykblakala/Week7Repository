@@ -7,6 +7,9 @@ import com.sparta.week6project.mappers.impl.EmployeeMapperImpl;
 import com.sparta.week6project.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +39,12 @@ public class EmployeeDAO implements EmployeeService {
     public Optional<EmployeeDTO> findById(Integer id) {
         return Optional.of(employeeMapper.employeeToDto(employeeRepository.findById(id).get()));
     }
+
+    public Page<Employee> findAllEmployees(int pageNum){
+        return employeePage(PageRequest.of(pageNum-1,10));
+    }
+
+    public Page<Employee> employeePage(Pageable pageable){return employeeRepository.findAll(pageable);}
 
     @Override
     public EmployeeDTO save(EmployeeDTO e) {
