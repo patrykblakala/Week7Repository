@@ -4,6 +4,7 @@ import com.sparta.week6project.DAO.interfaces.SalaryService;
 import com.sparta.week6project.DTO.SalaryDTO;
 import com.sparta.week6project.entities.DeptEmp;
 import com.sparta.week6project.entities.Employee;
+import com.sparta.week6project.entities.Salary;
 import com.sparta.week6project.entities.SalaryId;
 import com.sparta.week6project.mappers.SalaryMapper;
 import com.sparta.week6project.repositories.DeptEmpRepository;
@@ -11,6 +12,9 @@ import com.sparta.week6project.repositories.SalaryRepository;
 import com.sparta.week6project.repositories.TitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.time.LocalDate;
@@ -44,6 +48,15 @@ public class SalaryDAO implements SalaryService {
     @Override
     public Optional<SalaryDTO> findById(SalaryId id) {
         return Optional.of(salaryMapper.salaryToDTO(salaryRepository.findById(id).get()));
+    }
+
+
+    public Page<Salary> findAllSalaries() {
+        return salaryPage(PageRequest.of(10, 10));
+    }
+
+    public Page<Salary> salaryPage(Pageable pageable) {
+        return salaryRepository.findAll(pageable);
     }
 
     @Override

@@ -17,4 +17,5 @@ public interface DepartmentRepository extends JpaRepository<Department, String> 
     @Query (value = "SELECT dept_name from departments WHERE dept_no = :deptNo", nativeQuery = true)
     String findDeptNameByDeptNo(String deptNo);
 
+
 }
