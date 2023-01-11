@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Department Managers</title>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>View</th>
+    <th>Employee Number</th>
+    <th>Department</th>
+    <th>From Date</th>
+    <th>To Date</th>
+    <th>Update</th>
+    <th>Delete</th>
+
+  </thead>
+  <tr th:each="departmentManager:${departmentManagers}">
+    <td>
+      <a th:href="@{show(empNo=${departmentManager.getEmpNo.id}, deptNo=${departmentManager.getDeptNo.id})}" th:text="'View'" /></td>
+    <td th:text="'ID: ' + ${departmentManager.getEmpNo.id} + ' - ' + ${departmentManager.getEmpNo.firstName} + ${departmentManager.getEmpNo.lastName} "></td>
+    <td th:text="${departmentManager.getDeptNo.id}"></td>
+    <td th:text="${departmentManager.fromDate}"></td>
+    <td th:text="${departmentManager.toDate}"></td>
+    <td>
+      <a th:href="@{update(empNo=${departmentManager.getEmpNo.id}, deptNo=${departmentManager.getDeptNo.id})}" th:text="'Update'" /></td>
+
+    </td>
+    <td>
+      <form th:action="delete" method="POST">
+        <input type="hidden" id="empNo" th:name="empNo" th:value="${departmentManager.getEmpNo.id}">
+        <input type="hidden" id="deptNo"  th:name="deptNo" th:value="${departmentManager.getDeptNo.id}">
+
+        <input type="submit" value="Delete"/>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

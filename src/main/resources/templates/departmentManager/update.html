@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Department Manager</title>
+</head>
+<body>
+<form action="updateSuccess"  method ="POST">
+  <label for="empNo">Employee Number: </label>
+  <input type="text" id="empNo" th:name="empNo" th:value="${departmentManager.empNo}">
+  <br/><br/>
+    <label for="deptNo">Dept No: </label>
+    <input type="text" id="deptNo"  th:name="deptNo" th:value="${departmentManager.deptNo}">
+    <br/><br/>
+  <label for="fromDate">From Date: </label>
+  <input type="text" id="fromDate"th:name="fromDate" th:value="${departmentManager.fromDate}">
+  <br/><br/>
+  <label for="toDate">To Date: </label>
+  <input type="text" id="toDate"  th:name="toDate"  th:value="${departmentManager.toDate}">
+  <br/><br/>
+  <input type="submit" value="Update Department Manager">
+
+</form>
+</body>
+</html>

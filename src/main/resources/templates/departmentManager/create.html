@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Salary</title>
+</head>
+<body>
+<form action="success"  method ="POST">
+  <label for="empNo">Employee Number: </label>
+  <input type="text" id="empNo" th:name="empNo">
+  <br/><br/>
+    <label for="deptNo">Dept No: </label>
+    <input type="text" id="deptNo"  th:name="deptNo">
+    <br/><br/>
+  <label for="fromDate">From Date: </label>
+  <input type="text" id="fromDate"th:name="fromDate">
+  <br/><br/>
+  <label for="toDate">To Date: </label>
+  <input type="text" id="toDate"  th:name="toDate" >
+  <br/><br/>
+  <input type="submit" value="Create Department Manager">
+
+</form>
+</body>
+</html>
