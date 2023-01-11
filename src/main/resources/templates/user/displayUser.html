@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find User</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>User Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Role</th>
+    </thead>
+    <td th:text="${user.id}"></td>
+    <td th:text="${user.firstName}"></td>
+    <td th:text="${user.lastName}"></td>
+    <td th:text="${user.email}"></td>
+    <td th:text="${user.role}"></td>
+    </tr>
+</table>
+</body>
+</html>
