@@ -4,21 +4,38 @@
     <meta charset="UTF-8">
     <title>Home: Employee API</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        function myFunction() {
+            // document.getElementById("demo").innerHTML = "Hello World";
+            // window.open('localhost:8080/web/employees/' + document.getElementById('idInput').value)
+            var test = document.getElementById('searchEmployee');
+            test.href = "http://localhost:8080/web/employees/" + document.getElementById('idInput').value;
+            document.getElementById('searchEmployee').click();
+        }
+    </script>
 </head>
 <body>
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
 <div class="container" style="margin-top: 30px;">
     <h1>API Endpoints</h1>
-
+    <br>
     <div class="row">
         <div class="col">
-            <h5>Employees</h5>
-            <span> Search all: <em>localhost:8080/web/employees</em></span><br>
-            <span> Search by id: <em>localhost:8080/web/employees/{id}</em> </span>
+            <h5>Employee Management</h5>
+            <br>
+            <label for="allEmployees">View all Employees -</label>
+            <a id="allEmployees" th:href="@{'http://localhost:8080/web/employees/all/'}"><em>http://localhost:8080/web/employees/all/1</em></a>
+            <br>
+            <br>
+            <label for="searchEmployee">Search for Employee by ID - <input type="number" step="1" id="idInput" placeholder="Enter ID:"></label>
+            <a hidden="hidden" id="searchEmployee" href=""><em>http://localhost:8080/web/employees</em></a>
+            <br>
+            <br>
+            <button value="Click" onclick="myFunction()">Search</button>
         </div>
         <div class="col" >
-            <h5>Departments</h5>
+            <h5>Department Management</h5>
             <span> Search all: <em>localhost:8080/web/departments</em></span><br>
             <span> Search by id: <em>localhost:8080/web/employees/{id}</em> </span>
         </div>
