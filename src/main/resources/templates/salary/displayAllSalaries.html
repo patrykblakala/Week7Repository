@@ -8,7 +8,8 @@
 </head>
 <body>
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
-<table>
+<div class="container">
+<table class="table">
   <thead>
   <tr>
     <th>Employee Number</th>
@@ -21,7 +22,11 @@
     <td th:text="${salary.salary}"></td>
     <td th:text="${salary.id.fromDate}"></td>
     <td th:text="${salary.toDate}"></td>
+    <td><a th:href="@{/web/salaries/salary(empNo=${salary.empNo.id},fromDate=${salary.id.fromDate})}">View</a> </td>
+    <td><a th:href="@{/web/salaries/updateSalary(empNo=${salary.empNo.id},fromDate=${salary.id.fromDate})}">Update</a> </td>
+    <td><a th:href="@{/web/salaries/deleteSalary(empNo=${salary.empNo.id},fromDate=${salary.id.fromDate})}">Delete</a> </td>
   </tr>
 </table>
+</div>
 </body>
 </html>
