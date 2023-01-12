@@ -16,25 +16,42 @@ public class WebSecurityConfig {
 
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager(){
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
+        UserDetails admin = User.withDefaultPasswordEncoder()
                 .username("admin")
                 .password("admin")
                 .roles("ADMIN")
                 .build();
-        return new InMemoryUserDetailsManager(userDetails);
+
+        UserDetails update = User.withDefaultPasswordEncoder()
+                .username("update")
+                .password("update")
+                .roles("UPDATE")
+                .build();
+
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username("user")
+                .password("user")
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(admin, update, user);
     }
 
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        String[] readOnly = {"/web/departments/", "/web/departments/{id}"};
         http
                 .authorizeHttpRequests().requestMatchers("/").permitAll()
+              .and()
+                .authorizeHttpRequests().requestMatchers("/web/departments/", "/web/departments/{id}",
+                        "/web/salaries/all", "/web/salaries/salary",
+                        "/web/departmentManager/all", "/web/departmentManager/show").hasAnyRole("USER",  "UPDATE", "ADMIN")
                 .and()
-                .authorizeHttpRequests().requestMatchers("/web/departmentManager/**").hasRole("ADMIN")
+                .authorizeHttpRequests().requestMatchers("/web/departments/updateDepartment", "/web/departments/updateSuccess", "/web/departments/createDepartment", "/web/departments/createSuccess", "/web/departments/", "/web/departments/{id}",
+                        "/web/salaries/all", "/web/salaries/salary", "/web/salaries/createSalary", "/web/salaries/createSuccess",
+                        "/web/departmentManager/all", "/web/departmentManager/show", "/web/departmentManager/update", "/web/departmentManager/create",  "/web/departmentManager/success", "/web/departmentManager/updateSuccess").hasAnyRole("UPDATE", "ADMIN")
                 .and()
-                .authorizeHttpRequests().requestMatchers("/web/departments/**").hasRole("ADMIN")
-                .and()
-                .authorizeHttpRequests().requestMatchers("/web/salaries/**").hasRole("ADMIN")
+                .authorizeHttpRequests().requestMatchers("/web/departmentManager/**", "/web/departments/**", "/web/salaries/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
 //                .loginPage("/login");
