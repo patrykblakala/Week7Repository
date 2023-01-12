@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Salaries</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:insert="/navbar/navbar.html :: navbar">  </div>
+<span th:text="${salaryRange}"></span> was the salary range for <span th:text="${title}"></span>s during <span th:text="${year}"></span>.
+<br>
+<span th:text="${maxSalary}"></span> was the maximum salary and <span th:text="${minSalary}"></span> was the minimum salary.
+</body>
+</html>

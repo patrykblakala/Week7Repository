@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Salary Page</title>
+</head>
+<body>
+<span th:if="${salary==null}">Salary Not Found</span>
+<span th:unless="${salary==null}">
+<h1>Salary Successfully Deleted!</h1>
+</span>
+</body>
+</html>
