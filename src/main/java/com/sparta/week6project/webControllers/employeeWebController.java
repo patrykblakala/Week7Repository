@@ -33,6 +33,13 @@ public class employeeWebController {
         return "employee/displayEmployee";
     }
 
+    @GetMapping("/")
+    public String getEmployeeByLastName(Model model, @RequestParam String lastName){
+        List<Employee> employeeList = employeeDAO.findEmployeeByLastName(lastName);
+        model.addAttribute("employees",employeeList);
+        return "employee/displayAllEmployeesLastName";
+    }
+
     @GetMapping("/createEmployee")
     public String createEmployee(Model model){
         EmployeeDTO employeeDTO = new EmployeeDTO();
