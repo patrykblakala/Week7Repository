@@ -3,10 +3,8 @@ package com.sparta.week6project.controllers;
 import com.sparta.week6project.DAO.impl.EmployeeDAO;
 import com.sparta.week6project.DTO.EmployeeDTO;
 import com.sparta.week6project.entities.Employee;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -3,9 +3,11 @@ package com.sparta.week6project.webControllers;
 import com.sparta.week6project.DAO.impl.DepartmentManagerDAO;
 import com.sparta.week6project.DTO.DeptManagerDTO;
 import com.sparta.week6project.DTO.SalaryDTO;
+import com.sparta.week6project.Week6ProjectApplication;
 import com.sparta.week6project.entities.*;
 import com.sparta.week6project.repositories.DeptManagerRepository;
 import com.sparta.week6project.repositories.SalaryRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,13 +20,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@Log4j2
 @RequestMapping("/web/departmentManager")
+
 public class departmentManagerWebController {
     @Autowired
     DepartmentManagerDAO departmentManagerDAO;
 
     @Autowired
     DeptManagerRepository deptManagerRepository;
+
 
     @GetMapping("/all")
     public String getAllSalaries(Model model){
