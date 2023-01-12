@@ -11,8 +11,11 @@ import com.sparta.week6project.repositories.DepartmentRepository;
 import com.sparta.week6project.repositories.DeptManagerRepository;
 import com.sparta.week6project.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,6 +43,11 @@ public class DepartmentManagerDAO implements DepartmentManagerService<DeptManage
     @Override
     public Optional<DeptManagerDTO> findById(DeptManagerId id) {
         return Optional.of(deptManagerMapper.deptManagerToDTO(deptManagerRepository.findById(id).get()));
+    }
+
+    @Override
+    public List<DeptManager> findAll() {
+        return deptManagerRepository.findAll();
     }
 
     @Override

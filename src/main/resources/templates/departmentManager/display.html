@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Department Manager</title>
+</head>
+<body>
+<span th:if="${departmentManager==null}">Department Manager Not Found</span>
+<span th:unless="${departmentManager==null}">
+<table>
+  <thead>
+  <tr>
+    <th>Employee Number</th>
+    <th>Department</th>
+    <th>From Date</th>
+    <th>To Date</th>
+  </thead>
+      <tr>
+        <td th:text="${departmentManager.empNo}"></td>
+        <td th:text="${departmentManager.deptNo}"></td>
+        <td th:text="${departmentManager.fromDate}"></td>
+        <td th:text="${departmentManager.toDate}"></td>
+      </tr>
+</table>
+</span>
+</body>
+</html>

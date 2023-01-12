@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" th:href="@{/inputStyle.css}">
+    <title>Create Employee</title>
+</head>
+<body>
+<form action="createSuccess" th:object="${employee}" method="POST">
+    <label for="id">Employee Number: </label>
+    <input type="number" id="id" name="id" th:field="*{id}">
+    <br/><br/>
+    <label for="firstName">First Name: </label>
+    <input type="text" id="firstName" name="deptName" th:field="*{firstName}">
+    <br/><br/>
+    <label for="lastName">Last Name: </label>
+    <input type="text" id="lastName" name="LastName" th:field="*{lastName}">
+    <br/><br/>
+    Gender:
+    <input type="radio" id="genderMale" name="gender" value="M" th:field="*{gender}">
+    <label for="genderMale">Male</label>
+    <input type="radio" id="genderFemale" name="gender" value="F" th:field="*{gender}">
+    <label for="genderFemale">Female</label>
+    <br/><br/>
+    <label for="birthDate">Date of Birth: </label>
+    <input type="text" id="birthDate" name="birthDate" th:field="*{birthDate}">
+    <br/><br/>
+    <label for="hireDate">Hire Date: </label>
+    <input type="text" id="hireDate" name="hireDate" th:field="*{hireDate}">
+    <br/><br/>
+    <input type="submit" value="Create Employee">
+</form>
+</body>
+</html>
