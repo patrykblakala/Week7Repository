@@ -39,7 +39,6 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        String[] readOnly = {"/web/departments/", "/web/departments/{id}"};
         http
                 .authorizeHttpRequests().requestMatchers("/").permitAll()
               .and()
@@ -54,10 +53,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests().requestMatchers("/web/departmentManager/**", "/web/departments/**", "/web/salaries/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
-//                .loginPage("/login");
                 .loginProcessingUrl("/");
-//                .successForwardUrl("/");
-
         return http.build();
     }
 
