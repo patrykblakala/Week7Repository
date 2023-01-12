@@ -17,7 +17,7 @@
     <th>Date of Birth</th>
     <th>Hire Date</th>
   </thead>
-  <tr th:each="employee:${employees}">
+  <tr>
     <td th:text="${employee.id}"></td>
     <td th:text="${employee.firstName}"></td>
     <td th:text="${employee.lastName}"></td>
@@ -26,9 +26,6 @@
     <td th:text="${employee.hireDate}"></td>
   </tr>
 </table>
-<span th:unless="${pageNum==1}"><a class="pageButton" th:href="@{'http://localhost:8080/web/employees/all/'+ ${pageNum -1}}"><button>Previous</button></a>
-</span>
-<a class=pageButton th:href="@{'http://localhost:8080/web/employees/all/'+ ${pageNum + 1}}"><button>Next</button></a>
 
 
 </body>

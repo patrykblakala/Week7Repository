@@ -41,7 +41,7 @@ public class EmployeeDAO implements EmployeeService {
     }
 
     public Page<Employee> findAllEmployees(int pageNum){
-        return employeePage(PageRequest.of(pageNum-1,10));
+        return employeePage(PageRequest.of(pageNum-1,50));
     }
 
     public Page<Employee> employeePage(Pageable pageable){return employeeRepository.findAll(pageable);}
