@@ -16,8 +16,7 @@ import java.util.List;
 public class employeeWebController {
     @Autowired
     EmployeeDAO employeeDAO;
-
-    @GetMapping("/all/{pageNum}")
+    @GetMapping("/basic/all/{pageNum}")
     public String getAllEmployees(Model model, @PathVariable int pageNum) {
         Page<Employee> employees = employeeDAO.findAllEmployees(pageNum);
         model.addAttribute("employees", employees);
@@ -25,47 +24,47 @@ public class employeeWebController {
         return "employee/displayAllEmployees";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/basic/{id}")
     public String getEmployeeById(Model model, @PathVariable int id) {
         EmployeeDTO employeeDTO = employeeDAO.findById(id).orElse(null);
         model.addAttribute("employee", employeeDTO);
         return "employee/displayEmployee";
     }
 
-    @GetMapping("/")
+    @GetMapping("/basic")
     public String getEmployeeByLastName(Model model, @RequestParam String lastName) {
         List<Employee> employeeList = employeeDAO.findEmployeeByLastName(lastName);
         model.addAttribute("employees", employeeList);
         return "employee/displayAllEmployeesLastName";
     }
 
-    @GetMapping("/createEmployee")
+    @GetMapping("/update/createEmployee")
     public String createEmployee(Model model) {
         EmployeeDTO employeeDTO = new EmployeeDTO();
         model.addAttribute("employee", employeeDTO);
         return "employee/createEmployeePage";
     }
 
-    @PostMapping("/createSuccess")
+    @PostMapping("/update/createSuccess")
     public String createDepartmentSuccess(@ModelAttribute("employee") EmployeeDTO employeeDTO, Model model) {
         employeeDAO.save(employeeDTO);
         return "employee/createSuccessPage";
     }
 
-    @GetMapping("/updateEmployee/{id}")
+    @GetMapping("/update/updateEmployee/{id}")
     public String updateEmployee(Model model, @PathVariable int id) {
         EmployeeDTO employeeDTO = employeeDAO.findById(id).orElse(null);
         model.addAttribute("employee", employeeDTO);
         return "employee/updateEmployeePage";
     }
 
-    @PostMapping("/updateEmployee/updateSuccess")
+    @PostMapping("/update/updateEmployee/updateSuccess")
     public String updateEmployeeSuccess(@ModelAttribute("employee") EmployeeDTO employeeDTO, Model model) {
         employeeDAO.save(employeeDTO);
         return "employee/updateSuccessPage";
     }
 
-    @GetMapping("/deleteEmployee/{id}")
+    @GetMapping("/admin/deleteEmployee/{id}")
     public String deleteEmployee(@PathVariable int id, Model model) {
         EmployeeDTO employeeDTO = employeeDAO.findById(id).orElse(null);
         if (employeeDTO != null) {
@@ -73,6 +72,5 @@ public class employeeWebController {
         }
         model.addAttribute("employee", employeeDTO);
         return "employee/deleteSuccessPage";
-
     }
 }
