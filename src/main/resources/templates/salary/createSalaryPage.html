@@ -5,6 +5,7 @@
     <title>Create Salary</title>
 </head>
 <body>
+
 <form action="createSuccess" th:object="${salary}" method ="POST">
   <label for="id">Employee Number: </label>
   <input type="text" id="id" name="id" th:field="*{id.empNo}">
