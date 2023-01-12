@@ -4,16 +4,15 @@ import com.sparta.week6project.DAO.impl.TitleDAO;
 import com.sparta.week6project.DTO.DepartmentDTO;
 import com.sparta.week6project.DTO.SalaryDTO;
 import com.sparta.week6project.DTO.TitleDTO;
+import com.sparta.week6project.entities.Employee;
 import com.sparta.week6project.entities.Title;
 import com.sparta.week6project.entities.TitleId;
 import com.sparta.week6project.repositories.TitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,6 +27,14 @@ public class TitleWebController {
 
     @Autowired
     private TitleRepository titleRepo;
+
+    @GetMapping("/all/{pageNum}")
+    public String getAllTitles(Model model,@PathVariable int pageNum){
+        Page<Title> titles = titleDAO.findAllTitles(pageNum);
+        model.addAttribute("titles", titles);
+        model.addAttribute("pageNum", pageNum);
+        return "title/displayAllTitles";
+    }
 
     @GetMapping("/title")
     public String getTitleById(Integer empNo, String title,LocalDate fromDate, Model model) {
@@ -76,7 +83,7 @@ public class TitleWebController {
         return "title/updateTitlePage";
     }
     @PostMapping("/updateSuccess")
-    public String updateDepartmentSuccess(@ModelAttribute("title") TitleDTO title, Model model){
+    public String updateTitleSuccess(@ModelAttribute("title") TitleDTO title, Model model){
         titleDAO.save(title);
 
         return "title/updateSuccessPage";
