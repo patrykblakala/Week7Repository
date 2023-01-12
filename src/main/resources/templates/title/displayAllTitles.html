@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Titles</title>
+  <link type="text/css" rel="stylesheet" th:href="@{/tableStyle.css}">
+
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Employee Number</th>
+    <th>Title</th>
+    <th>From Date</th>
+    <th>To Date</th>
+  </thead>
+  <tr th:each="title:${titles}">
+    <td th:text="${title.id.empNo}"></td>
+    <td th:text="${title.id.title}"></td>
+    <td th:text="${title.id.fromDate}"></td>
+    <td th:text="${title.toDate}"></td>
+  </tr>
+</table>
+<span th:unless="${pageNum==1}"><a class="pageButton" th:href="@{'http://localhost:8080/web/titles/all/'+ ${pageNum -1}}"><button>Previous</button></a>
+</span>
+<a class=pageButton th:href="@{'http://localhost:8080/web/titles/all/'+ ${pageNum + 1}}"><button>Next</button></a>
+
+
+</body>
+</html>

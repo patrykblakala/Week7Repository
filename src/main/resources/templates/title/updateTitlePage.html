@@ -6,7 +6,7 @@
 </head>
 <body>
 <form action="updateSuccess" th:object="${title}" method ="POST">
-    <label for="id">Employee Number: </label>
+    <label for="id">Employee Number: <span th:text="*{id.empNo}"></span> </label>
     <input type="hidden" id="id" name="id" th:field="*{id.empNo}">
     <br/><br/>
     <input type="hidden" id="empNo" name="empNo" th:field="*{empNo}">
