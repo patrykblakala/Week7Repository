@@ -8,9 +8,11 @@
 </head>
 <body>
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
-<span th:if="${department==null}">Department not found</span>
-<span th:unless="${department==null}">
-<table>
+<br><br>
+<div class="container">
+    <span th:if="${department==null}">Department not found</span>
+    <span th:unless="${department==null}">
+<table class="table">
   <thead>
   <tr>
     <th>Department Number</th>
@@ -18,8 +20,10 @@
   </thead>
     <td th:text="${department.id}"></td>
     <td th:text="${department.deptName}"></td>
-  </tr>
+    </tr>
 </table>
 </span>
+</div>
+
 </body>
 </html>
