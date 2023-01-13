@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" th:href="@{/inputStyle.css}">
+    <title>Create Employee Full</title>
+</head>
+<body>
+<form th:action="@{createFullSuccess}" th:object="${fullEmployee}" method="POST">
+    <label for="id">Employee Number: </label>
+    <input type="number" id="id" name="id" th:field="*{employee.id}">
+    <br/><br/>
+    <label for="firstName">First Name: </label>
+    <input type="text" id="firstName" name="deptName" th:field="*{employee.firstName}">
+    <br/><br/>
+    <label for="lastName">Last Name: </label>
+    <input type="text" id="lastName" name="LastName" th:field="*{employee.lastName}">
+    <br/><br/>
+    Gender:
+    <input type="radio" id="genderMale" name="gender" value="M" th:field="*{employee.gender}">
+    <label for="genderMale">Male</label>
+    <input type="radio" id="genderFemale" name="gender" value="F" th:field="*{employee.gender}">
+    <label for="genderFemale">Female</label>
+    <br/><br/>
+    <label for="birthDate">Date of Birth: </label>
+    <input type="text" id="birthDate" name="birthDate" th:field="*{employee.birthDate}">
+    <br/><br/>
+    <label for="hireDate">Hire Date: </label>
+    <input type="text" id="hireDate" name="hireDate" th:field="*{employee.hireDate}">
+    <br/><br/>
+    <select class="form-control" id="deptDropDownList" th:field="*{department.deptNo}"><option value="0">Select Department</option><option th:each="dept : ${departments}" th:value="${dept.id}" th:text="${dept.deptName}"></option></select>
+    <br/><br/>
+    <select class="form-control" id="titleDropDownList" th:field="*{title.id.title}"><option value="0">Select Title</option><option th:each="role : ${titles}" th:value="${role}" th:text="${role}"></option></select>
+    <br/><br/>
+    <input type="number" id="salary" name="salary" th:field="*{salary.salary}">
+    <input type="submit" value="Create Employee">
+</form>
+</body>
+</html>
