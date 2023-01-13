@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Employee Success</title>
+</head>
+<body>
+<form th:action="@{createFullConfirm}" th:object="${populatedEmp}" method="POST">
+    <h1>Confirm information</h1><br>
+    Employee ID: <span th:text="*{employee.id}"></span><br>
+    Name: <span th:text="*{employee.firstName}"></span> <span th:text="*{employee.lastName}"></span><br>
+    D-O-B: <span th:text="*{employee.birthDate}"></span><br>
+    Gender: <span th:text="*{employee.gender}"></span><br>
+    Employment Date: <span th:text="*{employee.hireDate}"></span><br>
+    Department: <span th:text="${departmentName}"></span><br>
+    Title: <span th:text="*{title.id.title}"></span><br>
+    Salary: <span th:text="*{salary.salary}"></span><br>
+    <input type="submit" value="Confirm Creation">
+</form>
+</body>
+</html>

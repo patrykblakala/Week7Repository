@@ -29,14 +29,14 @@ public class salaryWebController {
     @Autowired
     SalaryRepository salaryRepository;
 
-    @GetMapping("/all")
+    @GetMapping("basic/all")
     public String getAllSalaries(Model model){
         Page<Salary> salaries = salaryDAO.findAllSalaries();
         model.addAttribute("salaries", salaries);
         return "salary/displayAllSalaries";
     }
 
-    @GetMapping("/salary")
+    @GetMapping("/basic/salary")
     public String getSalaryById(Integer empNo, LocalDate fromDate, Model model){
         SalaryId salaryId = new SalaryId();
         salaryId.setEmpNo(empNo);
@@ -50,21 +50,21 @@ public class salaryWebController {
         return "salary/displaySalary";
     }
 
-    @GetMapping("/createSalary")
+    @GetMapping("/update/createSalary")
     public String createSalary(Model model){
         SalaryDTO salary = new SalaryDTO();
         model.addAttribute("salary",salary);
         return "salary/createSalaryPage";
     }
 
-    @PostMapping("/createSuccess")
+    @PostMapping("/update/createSuccess")
     public String createDepartmentSuccess(@ModelAttribute("salary")SalaryDTO salary){
         salary.setEmpNo(salary.getId().getEmpNo());
         salaryDAO.save(salary);
         return "salary/createSuccessPage";
     }
 
-    @GetMapping("/updateSalary")
+    @GetMapping("/update/updateSalary")
     public String updateSalary(Integer empNo, LocalDate fromDate, Model model){
         SalaryId salaryId = new SalaryId();
         salaryId.setEmpNo(empNo);
@@ -80,7 +80,7 @@ public class salaryWebController {
         return "salary/updateSalaryPage";
     }
 
-    @PostMapping("/updateSalarySuccess")
+    @PostMapping("/update/updateSalarySuccess")
     public String updateSalarySuccess(@ModelAttribute("salary")SalaryDTO salary){
         System.out.println(salary);
         salary.setEmpNo(salary.getId().getEmpNo());
@@ -89,7 +89,7 @@ public class salaryWebController {
         return "salary/updateSalarySuccessPage";
     }
 
-    @GetMapping("/deleteSalary")
+    @GetMapping("/admin/deleteSalary")
     public String getDeleteSalary(Integer empNo, LocalDate fromDate, Model model){
         SalaryId salaryId = new SalaryId();
         salaryId.setEmpNo(empNo);
@@ -104,7 +104,7 @@ public class salaryWebController {
         return "salary/deleteSalaryPage";
     }
 
-    @GetMapping("/salaryAverage")
+    @GetMapping("/basic/salaryAverage")
     public String getSalaryAverageByDepartmentNumberAndDate(String departmentNumber, LocalDate givenDate, Model model){
         model.addAttribute("average",salaryDAO.averageSalaryForDepartmentAndDate(departmentNumber,givenDate));
         model.addAttribute("department",departmentNumber);
@@ -112,7 +112,7 @@ public class salaryWebController {
         return "salary/displaySalaryAveragePage";
     }
 
-    @GetMapping("/salaryRange")
+    @GetMapping("/basic/salaryRange")
     public String getSalaryRangeByTitleAndYear(String jobTitle, int givenYear, Model model){
         String salaryRange = salaryDAO.getSalaryRangeByJobTitleAndYear(jobTitle,givenYear);
         model.addAttribute("salaryRange","£"+salaryRange.split(" =")[1]);
@@ -123,7 +123,7 @@ public class salaryWebController {
         return "salary/displaySalaryRangePage";
     }
 
-    @GetMapping("/salaryPayGap")
+    @GetMapping("/basic/salaryPayGap")
     public String getGenderPayGapByDepartmentNumberAndYear(String departmentNumber, LocalDate givenYear, Model model){
         System.out.println("starting");
         String result = salaryDAO.getGenderPayGap(departmentNumber,givenYear).split("!")[0];

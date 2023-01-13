@@ -14,4 +14,7 @@ public interface TitleRepository extends JpaRepository<Title, TitleId> {
 
     @Query(value = "SELECT emp_no FROM titles WHERE from_date>= :givenYear AND title = :title",nativeQuery = true)
     List<Integer> findAllByTitle(String title, LocalDate givenYear);
+
+    @Query(value = "SELECT DISTINCT title FROM titles",nativeQuery = true)
+    List<String> findAllDistinctTitle();
 }

@@ -63,7 +63,7 @@
             <h5>Employee Management</h5>
             <br>
             <label for="allEmployees">View all Employees -</label>
-            <a id="allEmployees" th:href="@{'http://localhost:8080/web/employees/all/1'}"><em>http://localhost:8080/web/employees/all</em></a>
+            <a id="allEmployees" th:href="@{'http://localhost:8080/web/employees/basic/all/1'}"><em>http://localhost:8080/web/employees/basic/all</em></a>
             <br>
             <br>
             <input onclick="createEmployee()" class="btn btn-primary" value="Create new Employee">
@@ -106,6 +106,16 @@
             <br>
             <br>
             <input onclick="updateDepartment()" class="btn btn-info" value="Update">
+        </div>
+        <div class="col">
+            <h5>Department Managers Management</h5>
+            <br>
+            <label for="allDeptMgr">View all Department Managers -</label>
+            <a id="allDeptMgr" th:href="@{'http://localhost:8080/web/departmentManager/basic/all'}"><em>http://localhost:8080/web/departmentManager/basic/all</em></a>
+            <br>
+            <br>
+            <a th:href="@{'http://localhost:8080/web/departmentManager/update/create'}" class="btn btn-primary"> Create new Department Manager</a>
+
         </div>
         </br>
         </br>

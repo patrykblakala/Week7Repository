@@ -11,7 +11,7 @@
 <div th:insert="/navbar/navbar.html :: navbar"></div>
 <br><br>
 <div class="container">
-    <form action="createSuccess" th:object="${employee}" method="POST">
+    <form th:action="@{createSuccess}" th:object="${employee}" method="POST">
         <label for="id">Employee Number: </label>
         <input type="number" id="id" name="id" th:field="*{id}">
         <br/><br/>
