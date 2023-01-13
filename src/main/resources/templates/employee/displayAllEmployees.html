@@ -26,9 +26,9 @@
     <td th:text="${employee.hireDate}"></td>
   </tr>
 </table>
-<span th:unless="${pageNum==1}"><a class="pageButton" th:href="@{'http://localhost:8080/web/employees/all/'+ ${pageNum -1}}"><button>Previous</button></a>
+<span th:unless="${pageNum==1}"><a class="pageButton" th:href="@{'http://localhost:8080/web/employees/basic/all/'+ ${pageNum -1}}"><button>Previous</button></a>
 </span>
-<a class=pageButton th:href="@{'http://localhost:8080/web/employees/all/'+ ${pageNum + 1}}"><button>Next</button></a>
+<a class=pageButton th:href="@{'http://localhost:8080/web/employees/basic/all/'+ ${pageNum + 1}}"><button>Next</button></a>
 
 
 </body>
