@@ -10,7 +10,7 @@
 <br><br>
 <div class="container">
     <h1>Create an Employee</h1>
-    <form th:action="@{createFullSuccess}" th:object="${fullEmployee}" method="POST">
+    <form th:action="@{createFullConfirm}" th:object="${fullEmployee}" method="POST">
         <div class="mb-3">
             <label for="id" class="form-label">Employee Number: </label>
             <input type="number" class="form-control" id="id" name="id" th:field="*{employee.id}">

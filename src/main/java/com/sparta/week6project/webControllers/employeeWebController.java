@@ -1,9 +1,6 @@
 package com.sparta.week6project.webControllers;
 
-import com.sparta.week6project.DAO.impl.DepartmentDAO;
-import com.sparta.week6project.DAO.impl.EmployeeDAO;
-import com.sparta.week6project.DAO.impl.SalaryDAO;
-import com.sparta.week6project.DAO.impl.TitleDAO;
+import com.sparta.week6project.DAO.impl.*;
 import com.sparta.week6project.DTO.DeptEmpDTO;
 import com.sparta.week6project.DTO.EmployeeDTO;
 import com.sparta.week6project.DTO.FullEmpInfoDTO;
@@ -22,11 +19,15 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/web/employees")
+@SessionAttributes("populatedEmp")
 public class employeeWebController {
     @Autowired
     EmployeeDAO employeeDAO;
     @Autowired
     DepartmentDAO departmentDAO;
+
+    @Autowired
+    DeptEmpDAO deptEmpDAO;
 
     @Autowired
     DepartmentRepository departmentRepository;
@@ -36,6 +37,11 @@ public class employeeWebController {
     TitleRepository titleRepository;
     @Autowired
     SalaryDAO salaryDAO;
+
+    @ModelAttribute("populatedEmp")
+    public FullEmpInfoDTO populatedEmp(){
+        return new FullEmpInfoDTO();
+    }
 
     @GetMapping("/basic/all/{pageNum}")
     public String getAllEmployees(Model model, @PathVariable int pageNum) {
@@ -83,8 +89,8 @@ public class employeeWebController {
         return "employee/createEmployeeFullPage";
     }
 
-    @PostMapping("/update/createFullSuccess")
-    public String createEmployeeFullSuccess(@ModelAttribute("employeeFull") FullEmpInfoDTO fullEmpInfoDTO, Model model) {
+    @PostMapping("/update/createFullConfirm")
+    public String createEmployeeFullSuccess(@ModelAttribute("employeeFull") FullEmpInfoDTO fullEmpInfoDTO,@ModelAttribute("populatedEmp") FullEmpInfoDTO populatedEmp ,Model model) {
         //Set department info
         DeptEmpId deptEmpId = new DeptEmpId();
         deptEmpId.setEmpNo(fullEmpInfoDTO.getEmployee().getId());
@@ -109,14 +115,27 @@ public class employeeWebController {
         fullEmpInfoDTO.getTitle().setToDate(LocalDate.of(9999,1,1));
 
         model.addAttribute("populatedEmp", fullEmpInfoDTO);
+        model.addAttribute("employee",fullEmpInfoDTO.getEmployee());
+        model.addAttribute("title",fullEmpInfoDTO.getTitle());
+        model.addAttribute("salary",fullEmpInfoDTO.getSalary());
+        model.addAttribute("department",fullEmpInfoDTO.getDepartment());
         model.addAttribute("departmentName",departmentRepository.findDeptNameByDeptNo(fullEmpInfoDTO.getDepartment().getDeptNo()));
+        populatedEmp.setEmployee(fullEmpInfoDTO.getEmployee());
+        populatedEmp.setDepartment(fullEmpInfoDTO.getDepartment());
+        populatedEmp.setSalary(fullEmpInfoDTO.getSalary());
+        populatedEmp.setTitle(fullEmpInfoDTO.getTitle());
         return "employee/createFullConfirmPage";
     }
 
-    @PostMapping("/update/createEmployee/createFullConfirm")
+    @PostMapping("/update/createFullSuccess")
     public String createEmployeeConfirm(@ModelAttribute("populatedEmp") FullEmpInfoDTO fullEmpInfoDTO) {
+        System.out.println(fullEmpInfoDTO);
+        employeeDAO.save(fullEmpInfoDTO.getEmployee());
+        deptEmpDAO.save(fullEmpInfoDTO.getDepartment());
+        titleDAO.save(fullEmpInfoDTO.getTitle());
+        salaryDAO.save(fullEmpInfoDTO.getSalary());
 
-        return "employee/createSuccessPage";
+        return "employee/createFullSuccessPage";
     }
 
     @GetMapping("/update/updateEmployee/{id}")

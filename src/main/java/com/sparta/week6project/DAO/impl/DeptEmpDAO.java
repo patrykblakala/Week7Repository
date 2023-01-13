@@ -2,6 +2,8 @@ package com.sparta.week6project.DAO.impl;
 
 import com.sparta.week6project.DAO.interfaces.DeptEmpService;
 
+import com.sparta.week6project.DTO.DepartmentDTO;
+import com.sparta.week6project.DTO.DeptEmpDTO;
 import com.sparta.week6project.mappers.DeptEmpMapper;
 import com.sparta.week6project.repositories.DepartmentRepository;
 import com.sparta.week6project.repositories.DeptEmpRepository;
@@ -74,4 +76,7 @@ public class DeptEmpDAO implements DeptEmpService {
         return allEmpsOptional.orElse(0);
     }
 
+    public DeptEmpDTO save(DeptEmpDTO e) {
+        return deptEmpMapper.deptEmpToDTO(deptEmpRepository.save(deptEmpMapper.dtoToDeptEmp(e)));
+    }
 }
