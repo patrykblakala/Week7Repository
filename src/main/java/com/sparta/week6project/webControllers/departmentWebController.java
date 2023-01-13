@@ -58,8 +58,8 @@ public class departmentWebController {
         return "department/createSuccessPage";
     }
 
-    @GetMapping("/update/updateDepartment")
-    public String updateDepartment(Model model, String id){
+    @GetMapping("/update/updateDepartment/{id}")
+    public String updateDepartment(Model model, @PathVariable String id){
         Optional<DepartmentDTO> departmentDTOOptional= departmentDAO.findByDept_No(id);
         DepartmentDTO departmentDTO = null;
         if(departmentDTOOptional.isPresent()){
