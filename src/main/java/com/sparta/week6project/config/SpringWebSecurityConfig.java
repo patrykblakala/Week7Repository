@@ -15,17 +15,22 @@ public class SpringWebSecurityConfig {
     @Bean
     //Creates user registry
     public InMemoryUserDetailsManager configureUsers() throws Exception {
-        UserDetails cameron = User.withDefaultPasswordEncoder()
-                .username("Cameron")
-                .password("secret123")
+        UserDetails admin = User.withDefaultPasswordEncoder()
+                .username("admin")
+                .password("admin")
                 .roles("ADMIN")
                 .build();
-        UserDetails patryk = User.withDefaultPasswordEncoder()
-                .username("Patryk")
-                .password("passw0rd")
+        UserDetails update = User.withDefaultPasswordEncoder()
+                .username("update")
+                .password("update")
+                .roles("UPDATE")
+                .build();
+        UserDetails basic = User.withDefaultPasswordEncoder()
+                .username("basic")
+                .password("basic")
                 .roles("BASIC")
                 .build();
-        return new InMemoryUserDetailsManager(cameron, patryk);
+        return new InMemoryUserDetailsManager(admin, update, basic);
 
     }
 
@@ -33,11 +38,28 @@ public class SpringWebSecurityConfig {
     @Bean
     public SecurityFilterChain configurePolicy(HttpSecurity http) throws Exception {
         return http.authorizeRequests(auth -> {
-                    auth.requestMatchers("/web/employees/update/**")
-                            .hasAnyRole("ADMIN","UPDATE");
-                    auth.requestMatchers("/web/employees/admin/**")
+                    auth.requestMatchers("/web/employees/admin/**",
+                                    "/web/salaries/admin/**",
+                                    "/web/departments/admin/**",
+                                    "/web/departmentManager/admin/**",
+                                    "/web/titles/admin/**",
+                                    "/web/users/admin/**")
                             .hasRole("ADMIN");
-                    auth.requestMatchers("/web/employees/basic/**")
+
+                    auth.requestMatchers("/web/employees/update/**",
+                                    "/web/salaries/update/**",
+                                    "/web/departments/update/**",
+                                    "/web/departmentManager/update/**",
+                                    "/web/titles/update/**",
+                                    "/web/users/update/**")
+                            .hasAnyRole("ADMIN","UPDATE");
+
+                    auth.requestMatchers("/web/employees/basic/**",
+                                    "/web/salaries/basic/**",
+                                    "/web/departments/basic/**",
+                                    "/web/departmentManager/basic/**",
+                                    "/web/titles/basic/**",
+                                    "/web/users/basic/**")
                             .hasAnyRole("ADMIN","UPDATE","BASIC");
                 })
                 .formLogin().loginPage("/web/login")
@@ -48,7 +70,10 @@ public class SpringWebSecurityConfig {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
                 .deleteCookies()
-                .and().build();
+                .and()
+                .rememberMe()
+                .and()
+                .build();
     }
 
 }
