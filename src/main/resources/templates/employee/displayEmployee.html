@@ -26,6 +26,8 @@
       <td th:text="${employee.gender}"></td>
       <td th:text="${employee.birthDate}"></td>
       <td th:text="${employee.hireDate}"></td>
+      <td><a th:href="@{'http://localhost:8080/web/employees/update/updateEmployee/' + ${employee.id}}">Update</a> </td>
+      <td><a th:href="@{'http://localhost:8080/web/employees/admin/deleteEmployee/' + ${employee.id}}">Delete</a> </td>
     </tr>
   </table>
 </div>
