@@ -36,3 +36,4 @@ build/
 
 ### Log File ###
 src/main/resources/log4j.log
+src/main/resources/logs/*.log

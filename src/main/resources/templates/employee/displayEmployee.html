@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Employees</title>
+  <link type="text/css" rel="stylesheet" th:href="@{/tableStyle.css}">
+
+</head>
+<body>
+<div th:insert="/navbar/navbar.html :: navbar">  </div>
+<br><br>
+<table>
+  <thead>
+  <tr>
+    <th>Employee ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Gender</th>
+    <th>Date of Birth</th>
+    <th>Hire Date</th>
+  </thead>
+  <tr>
+    <td th:text="${employee.id}"></td>
+    <td th:text="${employee.firstName}"></td>
+    <td th:text="${employee.lastName}"></td>
+    <td th:text="${employee.gender}"></td>
+    <td th:text="${employee.birthDate}"></td>
+    <td th:text="${employee.hireDate}"></td>
+  </tr>
+</table>
+
+
+</body>
+</html>

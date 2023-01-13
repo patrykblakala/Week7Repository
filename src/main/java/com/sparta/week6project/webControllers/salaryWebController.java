@@ -64,32 +64,75 @@ public class salaryWebController {
         return "salary/createSuccessPage";
     }
 
-//    @GetMapping("/updateDepartment")
-//    public String updateDepartment(Model model, String id){
-//        Optional<DepartmentDTO> departmentDTOOptional= departmentDAO.findByDept_No(id);
-//        DepartmentDTO departmentDTO = null;
-//        if(departmentDTOOptional.isPresent()){
-//            departmentDTO = departmentDTOOptional.get();
-//        }
-//        model.addAttribute("department",departmentDTO);
-//        return "department/updateDepartmentPage";
-//    }
-//
-//    @PostMapping("/updateSuccess")
-//    public String updateDepartmentSuccess(@ModelAttribute("department")DepartmentDTO department, Model model){
-//        departmentDAO.save(department);
-//
-//        return "department/updateSuccessPage";
-//    }
-//
-//    @GetMapping("/deleteDepartment")
-//    public String getDeleteActor(Model model, String id){
-//        if (departmentDAO.findByDept_No(id).isPresent()){
-//            model.addAttribute("department",departmentDAO.findByDept_No(id).orElse(null));
-//            departmentDAO.deleteById(id);
-//        }
-//
-//        return "department/deleteSuccessPage";
-//    }
+    @GetMapping("/updateSalary")
+    public String updateSalary(Integer empNo, LocalDate fromDate, Model model){
+        SalaryId salaryId = new SalaryId();
+        salaryId.setEmpNo(empNo);
+        salaryId.setFromDate(fromDate);
+        Optional<SalaryDTO> salaryDTOOptional= salaryDAO.findById(salaryId);
+        SalaryDTO salary = null;
+        if(salaryDTOOptional.isPresent()){
+            salary = salaryDTOOptional.get();
+            model.addAttribute("salary",salary);
+        } else {
+            model.addAttribute("salary", salary);
+        }
+        return "salary/updateSalaryPage";
+    }
+
+    @PostMapping("/updateSalarySuccess")
+    public String updateSalarySuccess(@ModelAttribute("salary")SalaryDTO salary){
+        System.out.println(salary);
+        salary.setEmpNo(salary.getId().getEmpNo());
+        salaryDAO.save(salary);
+
+        return "salary/updateSalarySuccessPage";
+    }
+
+    @GetMapping("/deleteSalary")
+    public String getDeleteSalary(Integer empNo, LocalDate fromDate, Model model){
+        SalaryId salaryId = new SalaryId();
+        salaryId.setEmpNo(empNo);
+        salaryId.setFromDate(fromDate);
+        if (salaryDAO.findById(salaryId).isPresent()){
+            model.addAttribute("salary",salaryId);
+            salaryDAO.deleteById(salaryId);
+        } else {
+            model.addAttribute("salary", null);
+        }
+
+        return "salary/deleteSalaryPage";
+    }
+
+    @GetMapping("/salaryAverage")
+    public String getSalaryAverageByDepartmentNumberAndDate(String departmentNumber, LocalDate givenDate, Model model){
+        model.addAttribute("average",salaryDAO.averageSalaryForDepartmentAndDate(departmentNumber,givenDate));
+        model.addAttribute("department",departmentNumber);
+        model.addAttribute("date",givenDate);
+        return "salary/displaySalaryAveragePage";
+    }
+
+    @GetMapping("/salaryRange")
+    public String getSalaryRangeByTitleAndYear(String jobTitle, int givenYear, Model model){
+        String salaryRange = salaryDAO.getSalaryRangeByJobTitleAndYear(jobTitle,givenYear);
+        model.addAttribute("salaryRange","£"+salaryRange.split(" =")[1]);
+        model.addAttribute("maxSalary","£"+salaryRange.split(" -")[0]);
+        model.addAttribute("minSalary","£"+salaryRange.split("- ")[1].split(" =")[0]);
+        model.addAttribute("year",givenYear);
+        model.addAttribute("title",jobTitle);
+        return "salary/displaySalaryRangePage";
+    }
+
+    @GetMapping("/salaryPayGap")
+    public String getGenderPayGapByDepartmentNumberAndYear(String departmentNumber, LocalDate givenYear, Model model){
+        System.out.println("starting");
+        String result = salaryDAO.getGenderPayGap(departmentNumber,givenYear).split("!")[0];
+        System.out.println(result);
+        System.out.println(givenYear.toString());
+        model.addAttribute("year",givenYear.toString());
+        model.addAttribute("payGap",result);
+
+        return "salary/displayGenderPayGapPage";
+    }
 
 }
