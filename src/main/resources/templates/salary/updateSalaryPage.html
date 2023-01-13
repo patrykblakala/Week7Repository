@@ -11,7 +11,7 @@
 <div class="container">
 <span th:if="${salary==null}">Salary Not Found</span>
 <span th:unless="${salary==null}">
-    <form action="updateSalarySuccess" th:object="${salary}" method="POST">
+    <form th:action="@{/web/salaries/update/updateSalarySuccess}" th:object="${salary}" method="POST">
       Employee Number : <span th:text="*{id.empNo}"></span>
       <input type="hidden" id="id" name="id" th:field="*{id.empNo}">
       <br/><br/>
@@ -28,6 +28,8 @@
       <br/><br/>
       <input type="submit" value="Update Salary">
     </form>
+    <br>
+    <a th:href="@{/web/salaries/basic/all}">Go Back</a>
 </span>
 </div>
 </body>

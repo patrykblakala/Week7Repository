@@ -22,11 +22,14 @@
     <td th:text="${salary.salary}"></td>
     <td th:text="${salary.id.fromDate}"></td>
     <td th:text="${salary.toDate}"></td>
-    <td><a th:href="@{/web/salaries/salary(empNo=${salary.empNo.id},fromDate=${salary.id.fromDate})}">View</a> </td>
-    <td><a th:href="@{/web/salaries/updateSalary(empNo=${salary.empNo.id},fromDate=${salary.id.fromDate})}">Update</a> </td>
-    <td><a th:href="@{/web/salaries/deleteSalary(empNo=${salary.empNo.id},fromDate=${salary.id.fromDate})}">Delete</a> </td>
+    <td><a th:href="@{/web/salaries/basic/salary(empNo=${salary.empNo.id},fromDate=${salary.id.fromDate})}">View</a> </td>
+    <td><a th:href="@{/web/salaries/update/updateSalary(empNo=${salary.empNo.id},fromDate=${salary.id.fromDate})}">Update</a> </td>
+    <td><a th:href="@{/web/salaries/admin/deleteSalary(empNo=${salary.empNo.id},fromDate=${salary.id.fromDate})}">Delete</a> </td>
   </tr>
 </table>
+</div>
+<div class="container">
+  <button type="button" class="btn btn-primary"  onclick="location.href='/web/salaries/update/createSalary';">Create Salary</button>
 </div>
 </body>
 </html>

@@ -8,6 +8,10 @@
 </head>
 <body>
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
+<div class="container">
 <span th:text="${average}"></span> is the average salary for <span th:text="${department}"></span> on <span th:text="${date}"></span>
+    <br>
+    <a th:href="@{/web/salaries/basic/all}">Go Back</a>
+</div>
 </body>
 </html>

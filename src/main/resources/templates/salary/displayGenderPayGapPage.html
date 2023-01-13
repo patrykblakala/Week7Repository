@@ -8,6 +8,10 @@
 </head>
 <body>
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
+<div class="container">
 <span th:text="${payGap}"></span><span th:if="${year=='9999-01-01'}"> currently</span><span th:unless="${year=='9999-01-01'}" th:text="${' during ' + year}"></span>.
+  <br>
+  <a th:href="@{/web/salaries/basic/all}">Go Back</a>
+</div>
 </body>
 </html>
