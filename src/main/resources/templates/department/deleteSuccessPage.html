@@ -9,5 +9,7 @@
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
 <br><br>
 <h1>Department: <span th:text="${department.id}"></span> Successfully Deleted!</h1>
+<br>
+<a th:href="@{/web/departments/}">Go Back</a>
 </body>
 </html>

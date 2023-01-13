@@ -5,7 +5,7 @@
     <title>Create Employee Success</title>
 </head>
 <body>
-<form th:action="@{createFullConfirm}" th:object="${populatedEmp}" method="POST">
+<form th:action="@{createFullSuccess}" th:object="${populatedEmp}" method="POST">
     <h1>Confirm information</h1><br>
     Employee ID: <span th:text="*{employee.id}"></span><br>
     Name: <span th:text="*{employee.firstName}"></span> <span th:text="*{employee.lastName}"></span><br>
@@ -15,6 +15,10 @@
     Department: <span th:text="${departmentName}"></span><br>
     Title: <span th:text="*{title.id.title}"></span><br>
     Salary: <span th:text="*{salary.salary}"></span><br>
+    <input type="hidden" th:field="${employee}">
+    <input type="hidden" th:field="${department}">
+    <input type="hidden" th:field="${title}">
+    <input type="hidden" th:field="${salary}">
     <input type="submit" value="Confirm Creation">
 </form>
 </body>

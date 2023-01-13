@@ -3,31 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>All Employees</title>
-  <link type="text/css" rel="stylesheet" th:href="@{/tableStyle.css}">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
 <br><br>
-<table>
-  <thead>
-  <tr>
-    <th>Employee ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Gender</th>
-    <th>Date of Birth</th>
-    <th>Hire Date</th>
-  </thead>
-  <tr>
-    <td th:text="${employee.id}"></td>
-    <td th:text="${employee.firstName}"></td>
-    <td th:text="${employee.lastName}"></td>
-    <td th:text="${employee.gender}"></td>
-    <td th:text="${employee.birthDate}"></td>
-    <td th:text="${employee.hireDate}"></td>
-  </tr>
-</table>
+<div class="container">
+  <table>
+    <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Date of Birth</th>
+      <th>Hire Date</th>
+    </thead>
+    <tr>
+      <td th:text="${employee.id}"></td>
+      <td th:text="${employee.firstName}"></td>
+      <td th:text="${employee.lastName}"></td>
+      <td th:text="${employee.gender}"></td>
+      <td th:text="${employee.birthDate}"></td>
+      <td th:text="${employee.hireDate}"></td>
+    </tr>
+  </table>
+</div>
 
 
 </body>
