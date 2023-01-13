@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SpringWebSecurityConfig {
+public class    SpringWebSecurityConfig {
     @Bean
     //Creates user registry
     public InMemoryUserDetailsManager configureUsers() throws Exception {

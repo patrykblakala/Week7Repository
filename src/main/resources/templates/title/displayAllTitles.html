@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>All Titles</title>
-  <link type="text/css" rel="stylesheet" th:href="@{/tableStyle.css}">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<table>
-  <thead>
-  <tr>
-    <th>Employee Number</th>
-    <th>Title</th>
-    <th>From Date</th>
-    <th>To Date</th>
-  </thead>
-  <tr th:each="title:${titles}">
-    <td th:text="${title.id.empNo}"></td>
-    <td th:text="${title.id.title}"></td>
-    <td th:text="${title.id.fromDate}"></td>
-    <td th:text="${title.toDate}"></td>
-  </tr>
-</table>
-<span th:unless="${pageNum==1}"><a class="pageButton" th:href="@{'http://localhost:8080/web/titles/all/'+ ${pageNum -1}}"><button>Previous</button></a>
+<div th:insert="/navbar/navbar.html :: navbar">  </div>
+<br><br>
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Employee Number</th>
+      <th>Title</th>
+      <th>From Date</th>
+      <th>To Date</th>
+    </thead>
+    <tr th:each="title:${titles}">
+      <td th:text="${title.id.empNo}"></td>
+      <td th:text="${title.id.title}"></td>
+      <td th:text="${title.id.fromDate}"></td>
+      <td th:text="${title.toDate}"></td>
+    </tr>
+  </table>
+  <span th:unless="${pageNum==1}"><a class="pageButton" th:href="@{'http://localhost:8080/web/titles/all/'+ ${pageNum -1}}"><button>Previous</button></a>
 </span>
-<a class=pageButton th:href="@{'http://localhost:8080/web/titles/all/'+ ${pageNum + 1}}"><button>Next</button></a>
-
-
+  <a class=pageButton th:href="@{'http://localhost:8080/web/titles/all/'+ ${pageNum + 1}}"><button class="btn btn-primary">Next</button></a>
+</div>
 </body>
 </html>
