@@ -10,7 +10,7 @@
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
 <br><br>
 <div class="container">
-    <form action="updateSuccess" th:object="${employee}" method ="POST">
+    <form th:action="@{updateSuccess}" th:object="${employee}" method ="POST">
         Employee Number: <span th:text="*{id}"></span>
         <input type="hidden" id="id" name="id" th:field="*{id}">
         <br/><br/>

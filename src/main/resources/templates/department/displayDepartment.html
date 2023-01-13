@@ -19,6 +19,8 @@
   </thead>
     <td th:text="${department.id}"></td>
     <td th:text="${department.deptName}"></td>
+    <td><a th:href="@{/web/departments/updateDepartment(id=${department.id})}">Update</a> </td>
+    <td><a th:href="@{/web/departments/deleteDepartment(id=${department.id})}">Delete</a> </td>
     </tr>
 </table>
 </span>
