@@ -41,6 +41,16 @@
             updateDepartmentData.href = "http://localhost:8080/web/departments/updateDepartment/" + document.getElementById('updateDepartmentIdInput').value;
             document.getElementById('updateDepartment').click();
         }
+        function createUser() {
+            var userCreation = document.getElementById('createUser');
+            userCreation.href = "http://localhost:8080/web/users/update/create";
+            document.getElementById('createUser').click();
+        }
+        function searchForUser() {
+            var userData = document.getElementById('searchUser');
+            userData.href = "http://localhost:8080/web/users/basic/" + document.getElementById('userIdInput').value;
+            document.getElementById('searchUser').click();
+        }
     </script>
 </head>
 <body>
@@ -107,6 +117,28 @@
             <a th:href="@{'http://localhost:8080/web/departmentManager/update/create'}" class="btn btn-primary"> Create new Department Manager</a>
 
         </div>
+        </br>
+        </br>
+    </div>
+    <div class="col">
+        <h5>User Management</h5>
+        <br>
+        <label for="allUsers">View all Users -</label>
+        <a id="allUsers" th:href="@{'http://localhost:8080/web/users/basic/'}"><em>http://localhost:8080/web/users/</em></a>
+        <br>
+        <br>
+        <input onclick="createUser()" class="btn btn-primary" value="Create new User">
+        <a hidden="hidden" id="createUser" href=""></a>
+        <br>
+        <br>
+        <label for="searchUser">Search for User by ID - <input id="userIdInput" placeholder="Enter ID:"></label>
+        <a hidden="hidden" id="searchUser" href=""><em>http://localhost:8080/web/users/basic</em></a>
+        <br>
+        <br>
+        <input onclick="searchForUser()" class="btn btn-success" value="Search">
+        <br>
+        <br>
+    </div>
     </div>
 </div>
 </body>

@@ -2,10 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Create User</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/inputStyle.css}">
+
 </head>
 <body>
-<form action="createSuccess" th:object="${user}" method="POST">
+<div th:insert="/navbar/navbar.html :: navbar">  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+<h4>Create User</h4>
+
+<form th:action"@{createSuccess}" th:object="${user}" method="POST">
     <label for="firstName">First Name: </label>
     <input type="text" id="firstName" name="firstName" th:field="*{firstName}">
     <br/><br/>

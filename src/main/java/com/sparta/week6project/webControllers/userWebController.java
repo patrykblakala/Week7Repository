@@ -1,6 +1,7 @@
 package com.sparta.week6project.webControllers;
 
 import com.sparta.week6project.DAO.impl.UserDAO;
+import com.sparta.week6project.DTO.DepartmentDTO;
 import com.sparta.week6project.DTO.UserDTO;
 import com.sparta.week6project.entities.User;
 import com.sparta.week6project.repositories.UserRepository;
@@ -20,62 +21,64 @@ public class userWebController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/")
+    @GetMapping
+    public String getUserHomePage(Model model) {
+        return "user/userHome";
+    }
+
+    @GetMapping("/basic/")
     public String getAllUsers(Model model) {
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
         return "user/displayAllUsers";
     }
-
-    @GetMapping("/{id}")
-    public String getUser(Model model, @PathVariable Integer id) {
-        Optional<UserDTO> optionalUser = userDAO.findById(id);
+    @GetMapping("/basic/{id}")
+    public String getUserById(@PathVariable Integer id, Model model){
+        Optional<UserDTO> userOptional = userDAO.findById(id);
         UserDTO user = null;
-        if (optionalUser.isPresent()) {
-            user = optionalUser.get();
+        if(userOptional.isPresent()){
+            user = userOptional.get();
         }
-        model.addAttribute("user", user);
+        model.addAttribute("user",user);
         return "user/displayUser";
     }
-
-    @GetMapping("/create")
+    @GetMapping("/update/create")
     public String createUser(Model model) {
         UserDTO user = new UserDTO();
         model.addAttribute("user", user);
         return "user/createUserPage";
     }
-
-    @PostMapping("/createSuccess")
+    @PostMapping("/update/createSuccess")
     public String createUserSuccess(@ModelAttribute("user") UserDTO user, Model model) {
         user.setRole("BASIC");
         userDAO.save(user);
         return "user/createSuccessPage";
     }
 
-    @GetMapping("/update")
+    @GetMapping("/update/update")
     public String updateUser(Model model, Integer id) {
         Optional<UserDTO> userDTOOptional = userDAO.findById(id);
         UserDTO userDTO = null;
         if (userDTOOptional.isPresent()) {
             userDTO = userDTOOptional.get();
         }
+        if (userDTO != null)
         model.addAttribute("user", userDTO);
         return "user/updatePage";
     }
 
-    @PostMapping("/updateSuccess")
+    @PostMapping("/update/updateSuccess")
     public String updateSuccess(@ModelAttribute("user") UserDTO user, Model model) {
         userDAO.save(user);
         return "user/updateSuccessPage";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/admin/delete")
     public String deleteUser(Model model, UserDTO user) {
         model.addAttribute("user", user);
         return "user/deletePage";
     }
-
-    @PostMapping("/deleteSuccess")
+    @PostMapping("/admin/deleteSuccess")
     public String deleteSuccess(@ModelAttribute("user") UserDTO user, Model model) {
         Optional<UserDTO> userDTOOptional = userDAO.findById(user.getId());
         if (userDTOOptional.isPresent()) {
@@ -83,6 +86,4 @@ public class userWebController {
         }
         return "user/deleteSuccessPage";
     }
-
-
 }
