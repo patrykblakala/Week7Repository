@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Employee</title>
+</head>
+<body>
+<span th:if="${employee==null}"><h1>Employee not found.</h1></span>
+<span th:if="${employee!=null}"><h1>Employee: <span th:text="${employee.id}"></span> Successfully Deleted!</h1></span>
+<br>
+<a th:href="@{/web/employees/basic/all/1}">Go Back</a>
+</body>
+</html>

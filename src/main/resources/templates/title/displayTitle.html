@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span th:if="${title==null}">Department not found</span>
+<span th:unless="${title==null}">
+<table>
+  <thead>
+  <tr>
+    <th>Employee Number</th>
+    <th>Title</th>
+    <th> From Date</th>
+    <th>To Date</th>
+
+  </thead>
+    <td th:text="${title.empNo}"></td>
+    <td th:text="${title.id.title}"></td>
+    <td th:text="${title.id.fromDate}"></td>
+    <td th:text="${title.toDate}"></td>
+  </tr>
+</table>
+</span>
+</body>
+</html>

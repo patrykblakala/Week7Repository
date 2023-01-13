@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Title Success</title>
+</head>
+<body>
+<span th:if="${title==null}"><h1>Title: <span th:text="${empNo}"></span> Successfully deleted!</h1></span>
+<span th:unless="${title==null}"><h1>Title was not deleted.</h1></span>
+<!--<h1>Title for: <span th:text="${title.id.empNo}"></span> Successfully Deleted!</h1>-->
+</body>
+</html>
