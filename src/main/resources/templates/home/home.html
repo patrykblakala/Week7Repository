@@ -18,6 +18,12 @@
             document.getElementById('createDepartment').click();
         }
 
+        function createSalary() {
+            var salaryCreation = document.getElementById('createSalary');
+            salaryCreation.href = "/web/salaries/update/createDepartment";
+            document.getElementById('salaryDepartment').click();
+        }
+
         function searchForEmployee() {
             var employeeData = document.getElementById('searchEmployee');
             employeeData.href = "http://localhost:8080/web/employees/basic/" + document.getElementById('idInput').value;
@@ -28,6 +34,12 @@
             var departmentData = document.getElementById('searchDepartment');
             departmentData.href = "http://localhost:8080/web/departments/basic/" + document.getElementById('departmentIdInput').value;
             document.getElementById('searchDepartment').click();
+        }
+
+        function searchForSalary() {
+            var departmentData = document.getElementById('searchSalary');
+            departmentData.href = "/web/salaries/basic/" + document.getElementById('salaryIdInput').value;
+            document.getElementById('searchSalary').click();
         }
 
         function updateEmployee() {
@@ -41,6 +53,13 @@
             updateDepartmentData.href = "http://localhost:8080/web/departments/update/updateDepartment/" + document.getElementById('updateDepartmentIdInput').value;
             document.getElementById('updateDepartment').click();
         }
+
+        function updateSalary() {
+            var updateSalaryData = document.getElementById('updateSalary');
+            updateSalaryData.href = "/web/salaries/update/updateSalary/" + document.getElementById('updateDepartmentIdInput').value;
+            document.getElementById('updateSalary').click();
+        }
+
         function createUser() {
             var userCreation = document.getElementById('createUser');
             userCreation.href = "http://localhost:8080/web/users/update/create";
@@ -63,7 +82,7 @@
             <h5>Employee Management</h5>
             <br>
             <label for="allEmployees">View all Employees -</label>
-            <a id="allEmployees" th:href="@{'http://localhost:8080/web/employees/basic/all/1'}"><em>http://localhost:8080/web/employees/basic/all</em></a>
+            <a id="allEmployees" th:href="@{'http://localhost:8080/web/employees/basic/all/1'}"><em>/web/employees/basic/all</em></a>
             <br>
             <br>
             <input onclick="createEmployee()" class="btn btn-primary" value="Create new Employee">
@@ -87,7 +106,7 @@
             <h5>Department Management</h5>
             <br>
             <label for="allDepartments">View all Departments -</label>
-            <a id="allDepartments" th:href="@{'http://localhost:8080/web/departments/'}"><em>http://localhost:8080/web/departments/</em></a>
+            <a id="allDepartments" th:href="@{'http://localhost:8080/web/departments/'}"><em>/web/departments/</em></a>
             <br>
             <br>
             <input onclick="createDepartment()" class="btn btn-primary" value="Create new Department">
@@ -108,10 +127,34 @@
             <input onclick="updateDepartment()" class="btn btn-info" value="Update">
         </div>
         <div class="col">
+            <h5>Salary Management</h5>
+            <br>
+            <label for="allSalaries">View all Salaries -</label>
+            <a id="allSalaries" th:href="@{'/web/salaries/basic/all'}"><em>/web/salaries/basic/all</em></a>
+            <br>
+            <br>
+            <input onclick="createSalary()" class="btn btn-primary" value="Create new Salary">
+            <a hidden="hidden" id="createSalary" href=""></a>
+            <br>
+            <br>
+            <label for="searchSalary">Search for Salary by ID - <input id="salaryIdInput" placeholder="Enter ID:"></label>
+            <a hidden="hidden" id="searchSalary" href=""><em>/web/salaries</em></a>
+            <br>
+            <br>
+            <input onclick="searchForSalary()" class="btn btn-success" value="Search">
+            <br>
+            <br>
+            <label for="updateSalary">Update Salary by ID - <input id="updateSalaryIdInput" placeholder="Enter ID:"></label>
+            <a hidden="hidden" id="updateSalary" href=""></a>
+            <br>
+            <br>
+            <input onclick="updateSalary()" class="btn btn-info" value="Update">
+        </div>
+        <div class="col">
             <h5>Department Managers Management</h5>
             <br>
             <label for="allDeptMgr">View all Department Managers -</label>
-            <a id="allDeptMgr" th:href="@{'http://localhost:8080/web/departmentManager/basic/all'}"><em>http://localhost:8080/web/departmentManager/basic/all</em></a>
+            <a id="allDeptMgr" th:href="@{'http://localhost:8080/web/departmentManager/basic/all'}"><em>/web/departmentManager/basic/all</em></a>
             <br>
             <br>
             <a th:href="@{'http://localhost:8080/web/departmentManager/update/create'}" class="btn btn-primary"> Create new Department Manager</a>
@@ -124,7 +167,7 @@
         <h5>User Management</h5>
         <br>
         <label for="allUsers">View all Users -</label>
-        <a id="allUsers" th:href="@{'http://localhost:8080/web/users/basic/'}"><em>http://localhost:8080/web/users/</em></a>
+        <a id="allUsers" th:href="@{'http://localhost:8080/web/users/basic/'}"><em>/web/users/</em></a>
         <br>
         <br>
         <input onclick="createUser()" class="btn btn-primary" value="Create new User">
