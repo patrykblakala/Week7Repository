@@ -9,7 +9,7 @@
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
 <br><br>
 <div class="container">
-<form action="createSuccess" th:object="${salary}" method ="POST">
+<form th:action="@{/web/salaries/update/createSuccess}" th:object="${salary}" method ="POST">
   <label for="id">Employee Number: </label>
   <input type="text" id="id" name="id" th:field="*{id.empNo}">
   <br/><br/>
@@ -24,8 +24,9 @@
   <input type="text" id="toDate" name="toDate" th:field="*{toDate}">
   <br/><br/>
   <input type="submit" value="Create Salary">
-
 </form>
+  <br>
+  <a th:href="@{/web/salaries/basic/all}">Go Back</a>
 </div>
 </body>
 </html>

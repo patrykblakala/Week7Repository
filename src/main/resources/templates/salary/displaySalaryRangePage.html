@@ -8,8 +8,12 @@
 </head>
 <body>
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
+<div class="container">
 <span th:text="${salaryRange}"></span> was the salary range for <span th:text="${title}"></span>s during <span th:text="${year}"></span>.
 <br>
 <span th:text="${maxSalary}"></span> was the maximum salary and <span th:text="${minSalary}"></span> was the minimum salary.
+  <br>
+  <a th:href="@{/web/salaries/basic/all}">Go Back</a>
+</div>
 </body>
 </html>
