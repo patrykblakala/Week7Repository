@@ -21,7 +21,7 @@
       <td th:text="${department.deptName}"></td>
       <td><a th:href="${department.id}">View</a> </td>
       <td><a th:href="@{/web/departments/updateDepartment(id=${department.id})}">Update</a> </td>
-      <td><a th:href="@{/web/departments/updateDepartment(id=${department.id})}">Delete</a> </td>
+      <td><a th:href="@{/web/departments/deleteDepartment(id=${department.id})}">Delete</a> </td>
     </tr>
   </table>
 </div>
