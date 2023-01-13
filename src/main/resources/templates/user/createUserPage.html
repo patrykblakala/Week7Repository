@@ -15,7 +15,7 @@
 
 <h4>Create User</h4>
 
-<form action="createSuccess" th:object="${user}" method="POST">
+<form th:action"@{createSuccess}" th:object="${user}" method="POST">
     <label for="firstName">First Name: </label>
     <input type="text" id="firstName" name="firstName" th:field="*{firstName}">
     <br/><br/>
