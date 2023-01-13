@@ -14,31 +14,31 @@
 
         function createDepartment() {
             var departmentCreation = document.getElementById('createDepartment');
-            departmentCreation.href = "http://localhost:8080/web/departments/createDepartment";
+            departmentCreation.href = "http://localhost:8080/web/departments/update/createDepartment";
             document.getElementById('createDepartment').click();
         }
 
         function searchForEmployee() {
             var employeeData = document.getElementById('searchEmployee');
-            employeeData.href = "http://localhost:8080/web/employees/" + document.getElementById('idInput').value;
+            employeeData.href = "http://localhost:8080/web/employees/basic/" + document.getElementById('idInput').value;
             document.getElementById('searchEmployee').click();
         }
 
         function searchForDepartment() {
             var departmentData = document.getElementById('searchDepartment');
-            departmentData.href = "http://localhost:8080/web/departments/" + document.getElementById('departmentIdInput').value;
+            departmentData.href = "http://localhost:8080/web/departments/basic/" + document.getElementById('departmentIdInput').value;
             document.getElementById('searchDepartment').click();
         }
 
         function updateEmployee() {
             var updateEmployeeData = document.getElementById('updateEmployee');
-            updateEmployeeData.href = "http://localhost:8080/web/employees/updateEmployee/" + document.getElementById('updateEmployeeIdInput').value;
+            updateEmployeeData.href = "http://localhost:8080/web/employees/update/updateEmployee/" + document.getElementById('updateEmployeeIdInput').value;
             document.getElementById('updateEmployee').click();
         }
 
         function updateDepartment() {
             var updateDepartmentData = document.getElementById('updateDepartment');
-            updateDepartmentData.href = "http://localhost:8080/web/departments/updateDepartment/" + document.getElementById('updateDepartmentIdInput').value;
+            updateDepartmentData.href = "http://localhost:8080/web/departments/update/updateDepartment/" + document.getElementById('updateDepartmentIdInput').value;
             document.getElementById('updateDepartment').click();
         }
         function createUser() {
@@ -70,14 +70,14 @@
             <a hidden="hidden" id="createEmployee" href=""></a>
             <br>
             <br>
-            <label for="searchEmployee">Search for Employee by ID - <input type="number" step="1" id="idInput" placeholder="Enter ID:"></label>
+            <label for="searchEmployee">Search for Employee by ID - <input type="number" step="1" id="idInput" placeholder="Enter ID:" min="0"></label>
             <a hidden="hidden" id="searchEmployee" href=""></a>
             <br>
             <br>
             <input onclick="searchForEmployee()" class="btn btn-success" value="Search">
             <br>
             <br>
-            <label for="updateEmployee">Update Employee by ID - <input type="number" step="1" id="updateEmployeeIdInput" placeholder="Enter ID:"></label>
+            <label for="updateEmployee">Update Employee by ID - <input type="number" step="1" id="updateEmployeeIdInput" placeholder="Enter ID:" min="0"></label>
             <a hidden="hidden" id="updateEmployee" href=""></a>
             <br>
             <br>
