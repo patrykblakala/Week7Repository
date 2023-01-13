@@ -15,6 +15,6 @@ public class loginController {
 
     @PostMapping("/home")
     public String postLoginSuccess(){
-        return "navbar/navbar";
+        return "home/home";
     }
 }
