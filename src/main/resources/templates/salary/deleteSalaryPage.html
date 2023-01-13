@@ -2,14 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Salary Success</title>
+    <title>Delete Salary Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
 <div th:insert="/navbar/navbar.html :: navbar">  </div>
 <br><br>
 <div class="container">
-<h1>Salary For <span th:text="${salary.empNo}"></span> Successfully Created!</h1>
+<span th:if="${salary==null}">Salary Not Found</span>
+<span th:unless="${salary==null}">
+<h1>Salary Successfully Deleted!</h1>
+    <br>
+    <a th:href="@{/web/salaries/all}">Go Back</a>
+</span>
 </div>
 </body>
 </html>

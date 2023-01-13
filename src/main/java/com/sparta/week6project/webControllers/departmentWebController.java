@@ -77,7 +77,7 @@ public class departmentWebController {
     }
 
     @GetMapping("/deleteDepartment")
-    public String getDeleteActor(Model model, String id){
+    public String getDeleteDepartment(Model model, String id){
         if (departmentDAO.findByDept_No(id).isPresent()){
             model.addAttribute("department",departmentDAO.findByDept_No(id).orElse(null));
             departmentDAO.deleteById(id);
