@@ -5,7 +5,7 @@
   <title>Create Title</title>
 </head>
 <body>
-<form action="createSuccess" th:object="${title}" method ="POST">
+<form th:action="@{/web/titles/update/createSuccess}" th:object="${title}" method ="POST">
   <label for="id">Employee Number: </label>
   <input type="text" id="id" name="id" th:field="*{id.empNo}">
   <br/><br/>

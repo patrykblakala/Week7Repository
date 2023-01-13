@@ -28,7 +28,7 @@ public class TitleWebController {
     @Autowired
     private TitleRepository titleRepo;
 
-    @GetMapping("/all/{pageNum}")
+    @GetMapping("/basic/all/{pageNum}")
     public String getAllTitles(Model model,@PathVariable int pageNum){
         Page<Title> titles = titleDAO.findAllTitles(pageNum);
         model.addAttribute("titles", titles);
@@ -36,7 +36,7 @@ public class TitleWebController {
         return "title/displayAllTitles";
     }
 
-    @GetMapping("/title")
+    @GetMapping("/basic/title")
     public String getTitleById(Integer empNo, String title,LocalDate fromDate, Model model) {
 
         TitleId titleId = new TitleId();
@@ -53,20 +53,20 @@ public class TitleWebController {
         return "/title/displayTitle";
 
     }
-    @GetMapping("/createTitle")
+    @GetMapping("/update/createTitle")
     public String createTitle(Model model){
         TitleDTO title = new TitleDTO();
         model.addAttribute("title",title);
         return "title/createTitlePage";
     }
-    @PostMapping("/createSuccess")
+    @PostMapping("/update/createSuccess")
     public String createTitleSuccess(@ModelAttribute("title")TitleDTO title){
         title.setEmpNo(title.getId().getEmpNo());
         titleDAO.save(title);
         return "title/createSuccessPage";
     }
 
-    @GetMapping("/updateTitle")
+    @GetMapping("/update/updateTitle")
     public String updateTitle(Integer empNo, String title,LocalDate fromDate, Model model){
 
         TitleId titleId = new TitleId();
@@ -78,31 +78,31 @@ public class TitleWebController {
         TitleDTO result = null;
         if (titleOptional.isPresent()) {
             result = titleOptional.get();
+            model.addAttribute("title", result);
         }
-        model.addAttribute("title", result);
+        else {
+            model.addAttribute("title", result);
+        }
         return "title/updateTitlePage";
     }
-    @PostMapping("/updateSuccess")
+    @PostMapping("/update/updateSuccess")
     public String updateTitleSuccess(@ModelAttribute("title") TitleDTO title, Model model){
         titleDAO.save(title);
 
         return "title/updateSuccessPage";
     }
-    @GetMapping("/deleteTitle")
+    @GetMapping("/admin/deleteTitle")
     public String getDeleteTitle(Integer empNo, String title,LocalDate fromDate, Model model){
         TitleId titleId = new TitleId();
         titleId.setTitle(title);
         titleId.setEmpNo(empNo);
         titleId.setFromDate(fromDate);
-        Optional<TitleDTO> titleDTOOptional = titleDAO.findById(titleId);
-        TitleDTO result = null;
-        if(titleDTOOptional.isPresent()) {
-            result = titleDTOOptional.get();
-        }
-            model.addAttribute("empNo", result.getEmpNo());
+        if (titleDAO.findById(titleId).isPresent()){
+            model.addAttribute("title",titleId);
             titleDAO.deleteById(titleId);
-
-
+        } else {
+            model.addAttribute("title", null);
+        }
 
         return "title/deleteSuccessPage";
 

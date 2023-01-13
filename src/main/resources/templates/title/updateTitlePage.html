@@ -5,7 +5,9 @@
     <title>Update Department</title>
 </head>
 <body>
-<form action="updateSuccess" th:object="${title}" method ="POST">
+<span th:if="${title==null}">Title Not Found</span>
+<span th:unless="${title==null}">
+<form th:action="@{/web/titles/update/updateSuccess}" th:object="${title}" method ="POST">
     <label for="id">Employee Number: <span th:text="*{id.empNo}"></span> </label>
     <input type="hidden" id="id" name="id" th:field="*{id.empNo}">
     <br/><br/>
