@@ -26,14 +26,14 @@ public class departmentWebController {
     @Autowired
     DepartmentMapper departmentMapper;
 
-    @GetMapping("/")
+    @GetMapping("/basic/")
     public String getAllDepartments(Model model){
         List<Department> departments = departmentRepository.findAll();
         model.addAttribute("departments", departments);
         return "department/displayAllDepartments";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/basic/{id}")
     public String getDepartmentById(@PathVariable String id, Model model){
         Optional<DepartmentDTO> departmentOptional = departmentDAO.findByDept_No(id);
         DepartmentDTO department = null;
@@ -44,21 +44,21 @@ public class departmentWebController {
         return "department/displayDepartment";
     }
 
-    @GetMapping("/createDepartment")
+    @GetMapping("/update/createDepartment")
     public String createDepartment(Model model){
         DepartmentDTO department = new DepartmentDTO();
         model.addAttribute("department",department);
         return "department/createDepartmentPage";
     }
 
-    @PostMapping("/createSuccess")
+    @PostMapping("/update/createSuccess")
     public String createDepartmentSuccess(@ModelAttribute("department")DepartmentDTO department, Model model){
         departmentDAO.save(department);
 
         return "department/createSuccessPage";
     }
 
-    @GetMapping("/updateDepartment")
+    @GetMapping("/update/updateDepartment")
     public String updateDepartment(Model model, String id){
         Optional<DepartmentDTO> departmentDTOOptional= departmentDAO.findByDept_No(id);
         DepartmentDTO departmentDTO = null;
@@ -69,14 +69,14 @@ public class departmentWebController {
         return "department/updateDepartmentPage";
     }
 
-    @PostMapping("/updateSuccess")
+    @PostMapping("/update/updateSuccess")
     public String updateDepartmentSuccess(@ModelAttribute("department")DepartmentDTO department, Model model){
         departmentDAO.save(department);
 
         return "department/updateSuccessPage";
     }
 
-    @GetMapping("/deleteDepartment")
+    @GetMapping("/admin/deleteDepartment")
     public String getDeleteDepartment(Model model, String id){
         if (departmentDAO.findByDept_No(id).isPresent()){
             model.addAttribute("department",departmentDAO.findByDept_No(id).orElse(null));
