@@ -20,6 +20,11 @@ public class userWebController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping
+    public String getUserHomePage(Model model) {
+        return "user/userHome";
+    }
+
     @GetMapping("/")
     public String getAllUsers(Model model) {
         List<User> users = userRepository.findAll();
@@ -27,16 +32,34 @@ public class userWebController {
         return "user/displayAllUsers";
     }
 
-    @GetMapping("/{id}")
-    public String getUser(Model model, @PathVariable Integer id) {
-        Optional<UserDTO> optionalUser = userDAO.findById(id);
-        UserDTO user = null;
-        if (optionalUser.isPresent()) {
-            user = optionalUser.get();
-        }
+    @GetMapping("/findById")
+    public String getUserId(Model model, UserDTO user) {
         model.addAttribute("user", user);
+        return "user/displayUserId";
+    }
+
+    @GetMapping("/user")
+    public String findUser(Model model, @ModelAttribute("user")UserDTO userDTO) {
+//        Optional<UserDTO> optionalUser = userDAO.findById(id);
+//        UserDTO user = null;
+//        if (optionalUser.isPresent()) {
+//            user = optionalUser.get();
+//        }
+//        model.addAttribute("user", user);
         return "user/displayUser";
     }
+
+
+//    @GetMapping("/{id}")
+//    public String getUser(Model model, @PathVariable Integer id) {
+//        Optional<UserDTO> optionalUser = userDAO.findById(id);
+//        UserDTO user = null;
+//        if (optionalUser.isPresent()) {
+//            user = optionalUser.get();
+//        }
+//        model.addAttribute("user", user);
+//        return "user/displayUser";
+//    }
 
     @GetMapping("/create")
     public String createUser(Model model) {
@@ -52,14 +75,21 @@ public class userWebController {
         return "user/createSuccessPage";
     }
 
+    @GetMapping("/updateId")
+    public String getUpdateId(Model model, UserDTO user) {
+        model.addAttribute("user", user);
+        return "user/updateId";
+    }
+
     @GetMapping("/update")
-    public String updateUser(Model model, Integer id) {
-        Optional<UserDTO> userDTOOptional = userDAO.findById(id);
-        UserDTO userDTO = null;
-        if (userDTOOptional.isPresent()) {
-            userDTO = userDTOOptional.get();
-        }
-        model.addAttribute("user", userDTO);
+    public String updateUser(Model model, @ModelAttribute("user") UserDTO userDTO) {
+//        Optional<UserDTO> userDTOOptional = userDAO.findById(id);
+//        UserDTO userDTO = null;
+//        if (userDTOOptional.isPresent()) {
+//            userDTO = userDTOOptional.get();
+//        }
+//        if (userDTO != null)
+//        model.addAttribute("user", userDTO);
         return "user/updatePage";
     }
 
