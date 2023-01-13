@@ -10,7 +10,7 @@
 <body>
 <form action="deleteSuccess" th:object="${user}" method="POST">
     Delete User with ID: <span th:text="${user.id}"></span>
-    <input id="id" name="id" th:field="*{id}">
+    <input class="form-control" id="id" name="id" th:field="*{id}">
     <br/><br/>
     <input type="submit" value="Delete User">
 </form>
